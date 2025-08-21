@@ -1,20 +1,32 @@
-<<<<<<< HEAD
-# Biblio-Smart
-=======
-# myapp
+# 📚 Biblio-Smart
 
-A new Flutter project.
+## Description
+Biblio-Smart est une application mobile Flutter de gestion de bibliothèque.  
+Elle permet de consulter, ajouter, et gérer des livres facilement.  
+L’application utilise **Firebase** pour la gestion des données et l’authentification.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Fonctionnalités principales
+- Affichage de la liste des livres  
+- Ajout et modification de livres  
+- Recherche et filtrage par titre ou auteur  
+- Authentification utilisateur via Firebase  
+- Gestion des favoris et notes des livres  
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Technologies utilisées
+- **Flutter** pour le développement mobile cross-platform  
+- **Dart** comme langage principal  
+- **Firebase** pour la base de données et l’authentification  
+- **Git/GitHub** pour le contrôle de version  
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> 0cb55fd (🎉 Initial commit Bibliosmart - Floor + Firebase)
+---
+
+## Installation et utilisation
+1. Cloner le dépôt :  
+```bash
+git clone https://github.com/El-Dev19/Biblio-Smart.git
+cd Biblio-Smart
+
