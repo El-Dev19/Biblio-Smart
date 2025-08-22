@@ -60,14 +60,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               SizedBox(height: 16),
               CustomTextField(
-                hintText: "Email",
+                hintText: "Password",
                 controller: _passwordController,
                 validator:
                     (value) => value!.isEmpty ? 'Entrez votre Password' : null,
               ),
               const SizedBox(height: 24),
               CustomButton(
-                label: "Connexion",
+                label: "Creer le compte",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _signUp();
