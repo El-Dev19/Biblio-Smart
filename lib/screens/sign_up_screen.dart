@@ -1,13 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/screens/books_list_screen.dart';
-import 'package:myapp/screens/sign_in_screen.dart';
-// import 'package:myapp/screens/sign_up_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:myapp/widgets/custom_button.dart';
 import 'package:myapp/widgets/custom_textfield.dart';
-import 'package:myapp/widgets/validators.dart';
-
-/// Écran Sign In basique simulé avec SharedPreferences
+import 'sign_in_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -17,62 +12,77 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
-    final _auth = FirebaseAuth.instance;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
 
-    Future<void> _signUp() async {
-      try{
-        await _auth.signInWithEmailAndPassword(
-          email: _emailController.text.trim(),
-          password: _passwordController.text.trim(),
-       );
-       ScaffoldMessenger.of(context).showSnackBar(
+  Future<void> _signUp() async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Compte créé avec succès !')),
       );
-       Navigator.pushReplacement(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => const SignInScreen()),
       );
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(e.toString())),
-        );
-      }
+    } catch (e) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Créer un compte')),
       body: Padding(
-        padding: EdgeInsets.all(24.0),
+        padding: const EdgeInsets.all(24.0),
         child: Form(
           key: _formKey,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Sign Up", style: Theme.of(context).textTheme.displayLarge),
+              Text(
+                "Inscription",
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
               SizedBox(height: 24),
               CustomTextField(
                 hintText: "Email",
                 controller: _emailController,
-                validator: Validators.validateEmail,
+                validator:
+                    (value) => value!.isEmpty ? 'Entrez votre email' : null,
               ),
               SizedBox(height: 16),
               CustomTextField(
-                hintText: "Password",
-                controller: _passwordController,
-                validator: Validators.validatePassword,
-                obscureText: true,
+                hintText: "Email",
+                controller: _emailController,
+                validator:
+                    (value) => value!.isEmpty ? 'Entrez votre Password' : null,
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               CustomButton(
-                label: "Sign Up", 
+                label: "Connexion",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _signUp();
                   }
-                }),
+                },
+                child: const Text('Creer le compte'),
+              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     if (_formKey.currentState!.validate()) {
+              //       _signUp();
+              //     }
+              //   },
+              //   child: const Text('Créer le compte'),
+              // ),
             ],
           ),
         ),
@@ -80,5 +90,3 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 }
-
-

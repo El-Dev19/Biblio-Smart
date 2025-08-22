@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/add_editbook_screen.dart';
+import 'package:myapp/screens/book_detail_screen.dart';
 import 'package:provider/provider.dart';
 import '../providers/book_provider.dart';
 // import 'add_edit_book_screen.dart';
 // import 'book_detail_screen.dart';
 
-/// Écran Liste des Livres — respecte ton design, liste + bouton ajout
+/// Écran Liste des Livres — respecte le design, liste + bouton ajout
 class BooksListScreen extends StatefulWidget {
   const BooksListScreen({super.key});
 
@@ -43,10 +45,10 @@ class _BooksListScreenState extends State<BooksListScreen> {
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (_) => const AddEditBookScreen()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const AddEditBookScreen()),
+              );
             },
           )
         ],
@@ -72,21 +74,28 @@ class _BooksListScreenState extends State<BooksListScreen> {
               itemCount: books.length,
               itemBuilder: (_, index) {
                 final book = books[index];
-                return ListTile(
-                  title: Text(book.title),
-                  subtitle: Text(book.auteur),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () => bookProvider.deleteBook(book),
+                return Container(
+                  margin: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                  onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (_) => BookDetailScreen(book: book),
-                    //   ),
-                    // );
-                  },
+                  child: ListTile(
+                    title: Text(book.title),
+                    subtitle: Text(book.auteur),
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete),
+                      onPressed: () => bookProvider.deleteBook(book),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => BookDetailScreen(book: book),
+                        ),
+                      );
+                    },
+                  ),
                 );
               },
             ),

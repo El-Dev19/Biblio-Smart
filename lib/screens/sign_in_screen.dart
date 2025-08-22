@@ -47,7 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Sign In", style: Theme.of(context).textTheme.displayLarge),
+              Text("Connexion", style: Theme.of(context).textTheme.displayLarge),
               SizedBox(height: 24),
               CustomTextField(
                 hintText: "Email",
@@ -62,13 +62,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 obscureText: true,
               ),
               SizedBox(height: 24),
-              CustomButton(
-                label: "Sign In", 
-                onPressed: () {
+              CustomButton(label: "Connexion", onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _signIn();
                   }
-                }),
+                },
+                child: const Text('Connexion'),),
                 TextButton(
                 onPressed: () {
                   Navigator.push(
