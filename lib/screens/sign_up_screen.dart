@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 16),
               CustomTextField(
                 hintText: "Email",
-                controller: _emailController,
+                controller: _passwordController,
                 validator:
                     (value) => value!.isEmpty ? 'Entrez votre Password' : null,
               ),
